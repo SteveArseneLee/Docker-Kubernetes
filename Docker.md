@@ -15,6 +15,7 @@ docker container ls
 docker container ls --all
 docker container ls -aq
 
+---
 ## Containers
 ### Create image using this directory's Dockerfile
 docker build -t friendlyhello .
