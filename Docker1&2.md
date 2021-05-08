@@ -16,7 +16,7 @@ docker container ls --all
 docker container ls -aq
 
 ---
-## Containers
+## 2. Containers
 ### Create image using this directory's Dockerfile
 docker build -t friendlyhello .
 ### Run "friendlyhello" mapping port 4000 to 80
