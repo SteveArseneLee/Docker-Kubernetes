@@ -1,16 +1,19 @@
+```
 docker-compose
 docker-compose --help
 docker-compose version
 docker-compose up
 docker-compose down
 docker-compose scale
-
+```
 ### Ubuntu OS
+```
 apt-get update
 apt-get upgrade
 apt-get -y install curl
-
+```
 ### Alpine OS
+```
 apk add curl
 apk add nano
 
@@ -18,8 +21,9 @@ curl (or web browser) http://localhost:8001
 curl http://worker1:80
 
 nano docker-compose.yml
-
+```
 ## Docker Storage
+```
 docker volume create
 docker volume prune
 
@@ -40,8 +44,10 @@ docker run --name jenkins-production --detach -p 50000:50000 -p 8080:8080 -v myv
 docker volume ls
 docker volume rm {volume name}
 docker volume prune
+```
 
 ## Docker Machine
+```
 docker-machine --help
 docker-machine --version
 docker-machine version
@@ -61,4 +67,4 @@ docker-machine ssh default docker run -d -p 4000:80 nginx
 docker-machine env default
 eval $(docker-machine env default)
 eval $(docker-machine env -u)
-
+```

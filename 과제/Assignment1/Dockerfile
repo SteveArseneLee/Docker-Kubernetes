@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER SteveLee "lclgood@khu.ac.kr"
+# MAINTAINER SteveLee "lclgood@khu.ac.kr"
 RUN apt-get update
 RUN apt-get install -y nginx
 RUN echo "this is a ubuntu container"
