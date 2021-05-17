@@ -1,8 +1,25 @@
 version: '3.8'
 services:
     web:
-        image: nginx
+        image: lclgood/nginx:v1
+        build: .
+        #command: python manage.py runserver 0:8000
         ports:
             - "8000:80"
+        #volumes:
+        #    - .:/web
+        
     database:
         image: postgres
+        #environment:
+        #    - POSTGRES_USER=postgres
+        #    - POSTGRES_PASSWORD=postgres
+        ports:
+            - "8001:5432"
+        healthcheck:
+            test: "pg_isready -h localhost 8000 -q -U postgres"
+            interval: 3s
+            timeout: 1s
+            retries: 10
+    busybox:
+        image: lclgood/busybox:v1
