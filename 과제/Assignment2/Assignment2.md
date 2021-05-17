@@ -31,3 +31,52 @@ docker run -it busybox sh
 
 # Fetch the nginx homepage by using the container's IP address
 busybox$ wget -q -O - 172.17.0.2:80
+
+
+#### 학우님의 질문사항 참조^^
+version: '3.7'
+services:
+  app:
+    build: ./service-application
+    env_file: ./.env
+    networks:
+      - webnet 
+    ports:
+     - "8080:8080"
+    depends_on:
+     - db
+     - redisdb
+    environment:
+     - DATABASE_HOST=$DATABASE_HOST
+     - PORT=$PORT
+     - REDIS_HOST=$REDIS_HOST
+     - COOKIE_SECRET=$COOKIE_SECRET
+     - KAKAO_ID=$KAKAO_ID
+     - KAKAO_SECRET=$KAKAO_SECRET
+     - GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID
+     - GITHUB_CLIENT_SECRET=$GITHUB_CLIENT_SECRET
+     - S3_ACCESS_KEY_ID=$S3_ACCESS_KEY_ID
+     - S3_SECRET_ACCESS_KEY=$S3_SECRET_ACCESS_KEY
+    volumes:
+     - ./service-application/api:/app/api
+  db:
+    build: ./mysql-database
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql-database/custom.conf:/etc/mysql/conf.d/custom.cnf
+    networks: 
+      - webnet
+  redisdb:
+    build: ./redis-database
+    restart: always
+    command: redis-server --requirepass $REDIS_PASSWORD --port 6379
+    ports : 
+      - 6379:6379
+    networks: 
+      - webnet
+networks: 
+  webnet: 
+```

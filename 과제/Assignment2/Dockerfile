@@ -1,3 +1,9 @@
+# FROM python:3
+# ENV PYTHONUNBUFFERED 1
+# WORKDIR /web
+# COPY . .
+# RUN pip install -r requirements.txtim
+
 # FROM ubuntu:latest
 # # MAINTAINER SteveLee "lclgood@khu.ac.kr"
 # RUN apt-get update
@@ -6,7 +12,3 @@
 # WORKDIR /etc/nginx
 # CMD ["nginx", "-g", "daemon off;"]
 # EXPOSE 80
-
-FROM busybox:latest
-MAINTAINER SteveLee "lclgood@khu.ac.kr"
-RUN echo "this is busybox"
